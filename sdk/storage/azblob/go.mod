@@ -1,4 +1,4 @@
-module github.com/Azure/azure-sdk-for-go/sdk/storage/azblob
+module github.com/patrickrad/azure-sdk-for-go/sdk/storage/azblob/v0
 
 go 1.16
 
