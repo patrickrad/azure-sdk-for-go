@@ -9,6 +9,7 @@ package azblob
 import (
 	"context"
 	"errors"
+	"net/http"
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
@@ -275,4 +276,17 @@ func (b *BlobClient) GetSASToken(permissions BlobSASPermissions, start time.Time
 		StartTime:  start.UTC(),
 		ExpiryTime: expiry.UTC(),
 	}.NewSASQueryParameters(b.sharedKey)
+}
+
+// Query applies a SQL query on a blob's content and returns only the queried subset of the data.
+// https://docs.microsoft.com/en-us/rest/api/storageservices/query-blob-contents
+func (b BlobClient) Query(ctx context.Context,
+		queryRequest *QueryRequest) (*http.Response, error) {
+//}     basics, leaseInfo, accessConditions := options.pointers()
+	options := blobClientQueryOptions{
+		QueryRequest: queryRequest,
+	}
+	resp, err := b.client.Query(ctx, &options, nil, nil, nil)
+
+	return resp.RawResponse, handleError(err)
 }
