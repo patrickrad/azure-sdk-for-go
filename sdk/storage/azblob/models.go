@@ -67,3 +67,5 @@ type ObjectReplicationPolicy = blob.ObjectReplicationPolicy
 
 // RetryReaderOptions contains properties which can help to decide when to do retry.
 type RetryReaderOptions = blob.RetryReaderOptions
+
+type QueryRequest = blob.QueryRequest

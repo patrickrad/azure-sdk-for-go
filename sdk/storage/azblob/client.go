@@ -174,3 +174,7 @@ func (c *Client) DownloadStream(ctx context.Context, containerName string, blobN
 	o = shared.CopyOptions(o)
 	return c.svc.NewContainerClient(containerName).NewBlobClient(blobName).DownloadStream(ctx, o)
 }
+
+func (c *Client) Query(ctx context.Context, containerName string, blobName string, queryRequest *QueryRequest) (io.ReadCloser, error) {
+	return c.svc.NewContainerClient(containerName).NewBlockBlobClient(blobName).Query(ctx, queryRequest)
+}

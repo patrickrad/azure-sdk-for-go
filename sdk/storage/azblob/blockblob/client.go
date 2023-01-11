@@ -530,3 +530,10 @@ func (bb *Client) DownloadBuffer(ctx context.Context, buffer []byte, o *blob.Dow
 func (bb *Client) DownloadFile(ctx context.Context, file *os.File, o *blob.DownloadFileOptions) (int64, error) {
 	return bb.BlobClient().DownloadFile(ctx, file, o)
 }
+
+// Query applies a SQL query on a blob's content and returns only the queried subset of the data.
+// https://docs.microsoft.com/en-us/rest/api/storageservices/query-blob-contents
+func (bb *Client) Query(ctx context.Context,
+		queryRequest *blob.QueryRequest) (io.ReadCloser, error) {
+        return bb.BlobClient().Query(ctx, queryRequest)
+}

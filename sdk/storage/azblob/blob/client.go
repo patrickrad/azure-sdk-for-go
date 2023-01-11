@@ -444,3 +444,15 @@ func (b *Client) DownloadFile(ctx context.Context, file *os.File, o *DownloadFil
 		return 0, nil
 	}
 }
+
+// Query applies a SQL query on a blob's content and returns only the queried subset of the data.
+// https://docs.microsoft.com/en-us/rest/api/storageservices/query-blob-contents
+func (b *Client) Query(ctx context.Context,
+	queryRequest *QueryRequest) (io.ReadCloser, error) {
+	options := generated.BlobClientQueryOptions{
+		QueryRequest: queryRequest,
+	}
+	resp, err := b.generated().Query(ctx, &options, nil, nil, nil)
+
+	return resp.Body, err
+}
