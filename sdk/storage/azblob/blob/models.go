@@ -54,6 +54,8 @@ type Tags = generated.BlobTag
 // which has an offset but no zero value count indicates from the offset to the resource's end.
 type HTTPRange = exported.HTTPRange
 
+type QueryRequest = generated.QueryRequest
+
 // Request Model Declaration -------------------------------------------------------------------------------------------
 
 // DownloadStreamOptions contains the optional parameters for the Client.Download method.
